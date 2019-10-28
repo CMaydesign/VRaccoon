@@ -61,11 +61,22 @@ var GameManagerUtils = {
     createBush: function () {
         console.log('createBush');
         var newBush = document.createElement('a-entity');
+        //text
+        var bushText = document.createElement('a-entity');
         newBush.setAttribute('template', 'src:bush.template');
+        bushText.setAttribute('text' , 'Grab berries');
+        bushText.setAttribute('color' , 'white');
+        bushText.setAttribute('visability' , 'true');
+        //
         // newTree.setAttribute('cursor-listener', '');
         var position = GameManagerUtils.chooseRandomPosition();
         var positionStr = position.x.toString() + ' ' + position.y.toString() + ' ' + position.z.toString();
         newBush.setAttribute('position', position);
+        //text position
+        bushText.setAttribute('position + 1 ' , 'position + 1');
+        //
+        
+        return bushText;
         return newBush;
     }
 
