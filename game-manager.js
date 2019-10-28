@@ -65,8 +65,8 @@ var GameManagerUtils = {
         var bushText = document.createElement('a-entity');
         newBush.setAttribute('template', 'src:bush.template');
         bushText.setAttribute('text' , 'Grab berries');
-        bushText.setAttribute('color' , 'white');
-        bushText.setAttribute('visability' , 'true');
+        //bushText.setAttribute('material' , 'white');
+        //bushText.setAttribute('visability' , 'true');
         //
         // newTree.setAttribute('cursor-listener', '');
         var position = GameManagerUtils.chooseRandomPosition();
@@ -76,8 +76,8 @@ var GameManagerUtils = {
         bushText.setAttribute('position + 1 ' , 'position + 1');
         //
         
-        return bushText;
         return newBush;
+        return bushText;
     }
 
 };
