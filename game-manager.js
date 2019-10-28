@@ -62,9 +62,9 @@ var GameManagerUtils = {
         console.log('createBush');
         var newBush = document.createElement('a-entity');
         //text
-        var bushText = document.createElement('a-entity');
+        //var bushText = document.createElement('a-entity');
         newBush.setAttribute('template', 'src:bush.template');
-        bushText.setAttribute('text' , 'Grab berries');
+        //bushText.setAttribute('text' , 'Grab berries');
         //bushText.setAttribute('material' , 'white');
         //bushText.setAttribute('visability' , 'true');
         //
@@ -73,11 +73,11 @@ var GameManagerUtils = {
         var positionStr = position.x.toString() + ' ' + position.y.toString() + ' ' + position.z.toString();
         newBush.setAttribute('position', position);
         //text position
-        bushText.setAttribute('position + 1 ' , 'position + 1');
+        //bushText.setAttribute('position + 1 ' , 'position + 1');
         //
         
         return newBush;
-        return bushText;
+        //return bushText;
     }
 
 };
