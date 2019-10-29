@@ -3,12 +3,13 @@ if (typeof AFRAME === 'undefined') {
   throw new Error('Component attempted to register before AFRAME was available.');
 }
 
-
+var temppos;
 
 AFRAME.registerComponent('game-manager', {
     schema: {
-        numberTrees: { type: 'int' }
-        // numberBush: { type: 'int'}
+        numberTrees: { type: 'int' },
+        numberBush: { type: 'int'},
+        numberText: { type: 'int'}
     },
     init: function () {
         var numTrees = this.data['numberTrees'];
@@ -24,12 +25,20 @@ AFRAME.registerComponent('game-manager', {
         });
         var numBush = this.data['numberBush'];
         var newBush = [];
+        var numText = this.data['numberText'];
+        var newText = [];
         for (var i = 0; i < numBush; i++) {
             newBush.push(GameManagerUtils.createBush());
+            newText.push(GameManagerUtils.createText());
         }
         sceneEl.addEventListener('loaded', function () {
             newBush.forEach(function (bush) {
                 sceneEl.appendChild(bush);
+            });
+        });
+        sceneEl.addEventListener('loaded', function () {
+            newText.forEach(function (text) {
+                sceneEl.appendChild(text);
             });
         });
     }
@@ -61,25 +70,33 @@ var GameManagerUtils = {
     createBush: function () {
         console.log('createBush');
         var newBush = document.createElement('a-entity');
-        //text
-        //var bushText = document.createElement('a-entity');
         newBush.setAttribute('template', 'src:bush.template');
-        //bushText.setAttribute('text' , 'Grab berries');
-        //bushText.setAttribute('material' , 'white');
-        //bushText.setAttribute('visability' , 'true');
         //
         // newTree.setAttribute('cursor-listener', '');
         var position = GameManagerUtils.chooseRandomPosition();
         var positionStr = position.x.toString() + ' ' + position.y.toString() + ' ' + position.z.toString();
         newBush.setAttribute('position', position);
-        //text position
-        //bushText.setAttribute('position + 1 ' , 'position + 1');
-        //
-        
-        return newBush;
-        //return bushText;
+        temppos = position;
+        return newBush;    },
+    
+    //text
+    createText: function () {
+        console.log('createText');
+        var newText = document.createElement('a-entity');
+        newText.setAttribute('rotation', '0 200 0');
+        //newText.setAttribute('id', 'opacity');
+        //newText.setAttribute('animation', 'property: components.text.material.uniforms.opacity.value; to: 0; dir: alternate; loop: true');
+        newText.setAttribute('text', 'value: Goraz; width:10; align: center;');
+        //newText.setAttribute('material', 'color:white;');
+        //newText.setAttribute('value', 'Grab berries');
+        var position = GameManagerUtils.chooseRandomPosition();
+        var positionStr = position.x.toString() + ' ' + position.y.toString() + ' ' + position.z.toString();
+        newText.setAttribute('position', temppos);
+        newText.setAttribute('position', {y: 2});
+        return newText;
     }
-
+    
+    
 };
 // Component to change to a sequential color on click.
 AFRAME.registerComponent('cursor-listener', {
