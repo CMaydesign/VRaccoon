@@ -86,7 +86,7 @@ var GameManagerUtils = {
         newText.setAttribute('rotation', '0 200 0');
         //newText.setAttribute('id', 'opacity');
         //newText.setAttribute('animation', 'property: components.text.material.uniforms.opacity.value; to: 0; dir: alternate; loop: true');
-        newText.setAttribute('text', 'value: Goraz; width:10; align: center;');
+        newText.setAttribute('text', 'value: Grab Berries; width:10; align: center;');
         //newText.setAttribute('material', 'color:white;');
         //newText.setAttribute('value', 'Grab berries');
         var position = GameManagerUtils.chooseRandomPosition();
