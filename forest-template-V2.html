@@ -3,8 +3,7 @@
 
 <head>
     <title> VRaccoon</title>
-    <script src="https://aframe.io/releases/0.9.2/aframe.min.js ">
-    </script>
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js "></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v5.0.0/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
     <script src="game-manager.js"></script>
@@ -33,6 +32,8 @@
         <!-- these two lines call .js to create entities using the .template file and the tree+material -->
         <a-entity game-manager="numberTrees: 40"></a-entity>
         <a-entity game-manager="numberBush: 15"></a-entity>
+        <a-entity game-manager="numberText: 15"></a-entity>
+            
       <!--   <a-entity  id="text" visibility="false" text="value: Gather Berries;" color=" red"  scale=" 30 30 30" position="1.4 1.7 -15.39" rotation="-0.04 82.750 0" material="side:double">
              <a-animation attribute="visibility"
                         dur="2000"
