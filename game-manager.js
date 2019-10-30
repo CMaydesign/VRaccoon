@@ -3,6 +3,9 @@ if (typeof AFRAME === 'undefined') {
   throw new Error('Component attempted to register before AFRAME was available.');
 }
 
+document.querySelector('a-assets').addEventListener('loaded', function () {
+  console.log("OK LOADED");
+});
 var temppos;
 
 AFRAME.registerComponent('game-manager', {
@@ -89,6 +92,7 @@ var GameManagerUtils = {
         newText.setAttribute('text', 'value: Grab Berries; width:10; align: center;');
         //newText.setAttribute('material', 'color:white;');
         //newText.setAttribute('value', 'Grab berries');
+        newText.setAttribute('visibility', 'false')
         var position = GameManagerUtils.chooseRandomPosition();
         var positionStr = position.x.toString() + ' ' + position.y.toString() + ' ' + position.z.toString();
         newText.setAttribute('position', temppos);

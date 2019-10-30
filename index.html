@@ -6,13 +6,20 @@
     <script src="https://aframe.io/releases/0.9.2/aframe.min.js "></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v5.0.0/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
+    <!-- Bootstrap Bootswatch theme CSS - other themes available here: https://bootswatch.com -->
+      <link rel="stylesheet" href="https://cdn.rawgit.com/thomaspark/bootswatch/gh-pages/slate/bootstrap.min.css" />
+      
+      <!-- Bootstrap JS Dependencies -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="game-manager.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 
 <body>
-    <!-- <a-scene background="color: #FAFAFA" environment="preset: forest" > -->
-        <a-scene >
-        <a-assets>
+        <!-- <a-scene background="color: #FAFAFA" environment="preset: forest" > forest preset example-->
+        <a-scene preloader fog="color: rgba(230, 220, 180, 0.8); far: 100; type: linear;">
+        <a-assets time-out="10000">
             <a-asset-item id="raccoon" src="raccoon.obj"></a-asset-item>
             <a-asset-item id="bush" src="bush/bush.obj">
             <img id="forest" crossorigin="anonymous" src="28853677527_41126cb570_o.jpg">
@@ -27,20 +34,11 @@
 
 
         <!-- Scene Elements -->
-        <!-- <a-entity template="src: bush.template" position="0 0 0"></a-entity> --> <!-- this is used to take the bush.template file and use it as a template -->
 
         <!-- these two lines call .js to create entities using the .template file and the tree+material -->
         <a-entity game-manager="numberTrees: 40"></a-entity>
         <a-entity game-manager="numberBush: 15"></a-entity>
-        <a-entity game-manager="numberText: 15"></a-entity>
-      <!--   <a-entity  id="text" visibility="false" text="value: Gather Berries;" color=" red"  scale=" 30 30 30" position="1.4 1.7 -15.39" rotation="-0.04 82.750 0" material="side:double">
-             <a-animation attribute="visibility"
-                        dur="2000"
-                        fill="forwards"
-                        to="true"
-                        direction="alternate"
-                        begin="hover"></a-animation></a-entity> -->
-
+        
 
       
  
