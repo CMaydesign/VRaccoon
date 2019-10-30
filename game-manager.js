@@ -74,9 +74,10 @@ var GameManagerUtils = {
 AFRAME.registerComponent('cursor-listener', {
   init: function () {
     var lastIndex = -1;
-    var COLORS = ['red', 'green', 'blue'];
-    this.el.addEventListener('click', function (evt) {
+    var berryText = document.createElement('a-entity');
+    this.el.addEventListener('hover', function (evt) {
       lastIndex = (lastIndex + 1) % COLORS.length;
+      berryText.setAttribute('text', 'value:hello there;');
       this.setAttribute('visibility', 'true');
       console.log('I was clicked at: ', evt.detail.intersection.point);
     });
