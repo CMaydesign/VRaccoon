@@ -16,7 +16,7 @@
             <a-asset-item id="raccoon" src="raccoon.obj"></a-asset-item>
             <img id="skyTexture" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
             <img id="groundTexture" src="grass/grass.jpg">
-            <a-asset-item id="city" src="city-fbx/gmae.fbx"></a-asset-item>
+            <a-asset-item id="city" src="city/gmae.obj"></a-asset-item>
             <img id="city-tex" src="city/textures/buidling10.jpg">
             <a-asset-item id="house" src="house/house_01.obj"></a-asset-item>
         </a-assets>
@@ -26,7 +26,7 @@
 
 
 
-        <a-entity id="city-model" fbx-model="obj:#city;" scale="20 20 20;" material="map: [src: #city-tex; anisotropy: 1.1; flipY: true]" ></a-entity>
+        <a-entity id="city-model" obj-model="obj:#city;" scale="20 20 20;" material="color:grey" ></a-entity>
         <!-- <a-entity id="house-model" obj-model="obj:#house;" position="0 0 0" ></a-entity> -->
       
  
