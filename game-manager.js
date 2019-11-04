@@ -2,7 +2,41 @@
 if (typeof AFRAME === 'undefined') {
   throw new Error('Component attempted to register before AFRAME was available.');
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const scene = document.querySelector('a-scene');
+    const splash = document.querySelector('#splash');
+    const loading = document.querySelector('#splash .loading');
+    const startButton = document.querySelector('#splash .start-button');
 
+    const emitEvent = (eventName, listeners) => {
+        listeners.forEach((listener) => {
+            const el = document.querySelector(listener);
+            el.emit(eventName);
+        })
+    };
+
+    const emitMediaEvent = (eventType, listeners) => {
+        listeners.forEach((listener) => {
+            const el = document.querySelector(listener);
+            el.components.sound[eventType]();
+        })
+    };
+
+
+    scene.addEventListener('loaded', function (e) {
+        setTimeout(() => {
+            loading.style.display = 'none';
+            splash.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+            startButton.style.opacity = 1;
+        }, 50);
+    });
+
+    startButton.addEventListener('click', function (e) {
+        splash.style.display = 'none';
+        emitEvent('scene-started', ['#groundTexture', '#text', '#bushes', '#raccoon', '#trees']);
+    });
+});
+// var hover = new Boolean (false);
 var temppos;
 
 AFRAME.registerComponent('game-manager', {
@@ -58,6 +92,7 @@ var GameManagerUtils = {
     createTree: function () {
         console.log('createTree');
         var newTree = document.createElement('a-entity');
+        newTree.setAttribute('id', 'tree');
         newTree.setAttribute('obj-model', 'obj:#tree-model');
         newTree.setAttribute('scale', '1.5 1.5 1.5');
         newTree.setAttribute('material', 'src:tree/bubing/BubingaTree_BaseColor.png');
@@ -71,8 +106,7 @@ var GameManagerUtils = {
         console.log('createBush');
         var newBush = document.createElement('a-entity');
         newBush.setAttribute('template', 'src:bush.template');
-        //
-        // newTree.setAttribute('cursor-listener', '');
+        newBush.setAttribute('cursor-listener');
         var position = GameManagerUtils.chooseRandomPosition();
         var positionStr = position.x.toString() + ' ' + position.y.toString() + ' ' + position.z.toString();
         newBush.setAttribute('position', position);
@@ -81,6 +115,7 @@ var GameManagerUtils = {
     
     //text
     createText: function () {
+        if (hover = true){
         console.log('createText');
         var newText = document.createElement('a-entity');
         newText.setAttribute('rotation', '0 200 0');
@@ -95,6 +130,7 @@ var GameManagerUtils = {
         newText.setAttribute('position', {y: 2});
         return newText;
     }
+    }
     
     
 };
@@ -102,10 +138,10 @@ var GameManagerUtils = {
 AFRAME.registerComponent('cursor-listener', {
   init: function () {
     var lastIndex = -1;
-    var COLORS = ['red', 'green', 'blue'];
-    this.el.addEventListener('click', function (evt) {
+    this.el.addEventListener('hover', function (evt) {
       lastIndex = (lastIndex + 1) % COLORS.length;
       this.setAttribute('visibility', 'true');
+      hover = true;
       console.log('I was clicked at: ', evt.detail.intersection.point);
     });
   }

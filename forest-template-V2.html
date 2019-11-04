@@ -7,10 +7,15 @@
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v5.0.0/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
     <script src="game-manager.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"></link>
 </head>
 
 <body>
     <!-- <a-scene background="color: #FAFAFA" environment="preset: forest" > -->
+    <div id="splash">
+        <div class="loading"></div>
+        <div class="start-button">Start</div>
+    </div>
         <a-scene >
         <a-assets>
             <a-asset-item id="raccoon" src="raccoon.obj"></a-asset-item>
@@ -27,20 +32,13 @@
 
 
         <!-- Scene Elements -->
-        <!-- <a-entity template="src: bush.template" position="0 0 0"></a-entity> --> <!-- this is used to take the bush.template file and use it as a template -->
 
         <!-- these two lines call .js to create entities using the .template file and the tree+material -->
-        <a-entity game-manager="numberTrees: 40"></a-entity>
-        <a-entity game-manager="numberBush: 15"></a-entity>
-        <a-entity game-manager="numberText: 15"></a-entity>
+        <a-entity id="trees" game-manager="numberTrees: 40"></a-entity>
+        <a-entity id="bushes" game-manager="numberBush: 15"></a-entity>
+        <a-entity id="text" game-manager="numberText: 15"></a-entity>
             
-      <!--   <a-entity  id="text" visibility="false" text="value: Gather Berries;" color=" red"  scale=" 30 30 30" position="1.4 1.7 -15.39" rotation="-0.04 82.750 0" material="side:double">
-             <a-animation attribute="visibility"
-                        dur="2000"
-                        fill="forwards"
-                        to="true"
-                        direction="alternate"
-                        begin="hover"></a-animation></a-entity> -->
+
 
 
       
@@ -71,10 +69,10 @@
         <a-plane src="#groundTexture" rotation="-90 0 0" width="300" height="300" repeat="10 10"></a-plane>
 
         <!-- Camera Elements -->
-        <a-entity id="rig" position="8.672 2.079 .207" rotation="0 64.172 0" movement-controls="fly:true">
-            <a-entity id="camera" camera look-controls="pointerLockEnabled: true" wasd-controls="acceleration:300" >
+        <a-entity id="rig" position="8.672 2.079 .207" rotation="0 -139.149 0" movement-controls="fly:true">
+            <a-entity id="camera" camera look-controls="pointerLockEnabled: true" wasd-controls="acceleration:300" raycaster="objects: .clickable; interval: 1;" >
                 <a-entity laser-controls="hand: right"></a-entity>
-                    <a-entity obj-model="obj:#raccoon;" scale="0.03 0.03 0.03 " position="-0.03 -1.22 -0.5" rotation="-90 68 110" material="src:raccoon/10038_Racoon_v1_Diffuse.jpg; roughness:1; meatlness:0;" rotation="-89.41 39.425 -156.3"></a-entity>
+                    <a-entity id="raccoon" obj-model="obj:#raccoon;" scale="0.03 0.03 0.03 " position="-0.03 -1.22 -0.5" rotation="-90 68 110" material="src:raccoon/10038_Racoon_v1_Diffuse.jpg; roughness:1; meatlness:0;" rotation="-89.41 39.425 -156.3"></a-entity>
                     <a-cursor id="cursor" cursor="rayOrigin: mouse"></a-cursor>
 
                      <!-- this berry needs to be generated when a bush is clicked-then is shown in inventory -->
