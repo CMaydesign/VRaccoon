@@ -14,7 +14,7 @@
         <a-scene >
         <a-assets>
             <a-asset-item id="raccoon" src="raccoon.obj"></a-asset-item>
-            <img id="skyTexture" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+            <img id="skyTexture" src="city/city.jpg">
             <img id="groundTexture" src="grass/grass.jpg">
             <a-asset-item id="city" src="city/gmae.obj"></a-asset-item>
             <img id="city-tex" src="city/textures/buidling10.jpg">
@@ -26,7 +26,7 @@
 
 
 
-        <a-entity id="city-model" obj-model="obj:#city;" scale="20 20 20;" material="color:grey" ></a-entity>
+        <a-entity id="city-model" obj-model="obj:#city;" scale="10 10 10;" material="color:grey" ></a-entity>
         <!-- <a-entity id="house-model" obj-model="obj:#house;" position="0 0 0" ></a-entity> -->
       
  
@@ -48,12 +48,12 @@
         <a-entity gearvr-controls="orientationOffset:  [object Object]"></a-entity>
 
       <!-- 360-degree image-background -->
-      <a-sky id="image-360" radius="300" src="#skyTexture" position="0 -30 0"
+      <a-sky id="image-360" radius="300" src="#skyTexture" position="0 -125 0" scale=".7 .7 .7"
              animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
              animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
 
         <!-- Ground -->
-        <a-plane src="#groundTexture" rotation="-90 0 0" width="300" height="300" repeat="10 10"></a-plane>
+        <a-plane src="#groundTexture" rotation="-90 0 0" position="0 -2.293 0" width="300" height="300" repeat="10 10"></a-plane>
 
         <!-- Camera Elements -->
         <a-entity id="rig" position="8.672 2.079 .207" rotation="0 64.172 0" movement-controls>
