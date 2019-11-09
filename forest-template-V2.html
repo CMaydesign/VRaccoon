@@ -87,7 +87,7 @@
                     <a-cursor id="cursor" cursor="rayOrigin: mouse"></a-cursor>
 
                      <!-- this berry needs to be generated when a bush is clicked-then is shown in inventory -->
-                   <!--  <a-entity id="berry" obj-model="obj:#berry; mtl:#berry-mtl"  position="-1.514 -.77 -1.609" scale=".2 .2 .2" 
+                    <a-entity id="berry" obj-model="obj:#berry; mtl:#berry-mtl"  position="-1.514 -.77 -1.609" scale=".2 .2 .2" animation__opacity="property: opacity; dur: 500; to: 1; startEvents: fadeIn;" animation__opacity2="property: opacity; dur: 500; to: 0; startEvents: fadeOut"
                             animation="property:rotation;
                                         from: 0 0 0;
                                         to: 0 -360 0;
@@ -95,8 +95,9 @@
                                         easing:linear;
                                         dur:3000;
                                         ">
-                    </a-entity> -->
-                   <!--  <a-entity geometry="primitive:  ring;  radiusInner:  1;  radiusOuter:  1.3" material="side:  double;  offset:  [object Object];  repeat:  [object Object];  ambientOcclusionTextureOffset:  [object Object];  ambientOcclusionTextureRepeat:  [object Object];  color:  #d0ff18;  displacementTextureOffset:  [object Object];  displacementTextureRepeat:  [object Object];  metalnessTextureOffset:  [object Object];  metalnessTextureRepeat:  [object Object];  normalScale:  [object Object];  normalTextureOffset:  [object Object];  normalTextureRepeat:  [object Object];  roughnessTextureOffset:  [object Object];  roughnessTextureRepeat:  [object Object]" position="-1.514 -.77 -1.609" scale=".3 .3 .3"></a-entity> -->
+                            <a-entity geometry="primitive:  ring;  radiusInner:  1;  radiusOuter:  1.3" material="side:  double;  offset:  [object Object];  repeat:  [object Object];  ambientOcclusionTextureOffset:  [object Object];  ambientOcclusionTextureRepeat:  [object Object];  color:  #d0ff18;  displacementTextureOffset:  [object Object];  displacementTextureRepeat:  [object Object];  metalnessTextureOffset:  [object Object];  metalnessTextureRepeat:  [object Object];  normalScale:  [object Object];  normalTextureOffset:  [object Object];  normalTextureRepeat:  [object Object];  roughnessTextureOffset:  [object Object];  roughnessTextureRepeat:  [object Object]" position="-1.514 -.77 -1.609" scale=".3 .3 .3"></a-entity>
+                    </a-entity>
+
 
             </a-entity>
         </a-entity>
