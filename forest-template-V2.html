@@ -4,21 +4,18 @@
 <head>
     <title> VRaccoon</title>
     <script src="https://aframe.io/releases/0.9.2/aframe.min.js "></script>
-    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v5.0.0/dist/aframe-extras.min.js"></script>
-    <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-proxy-event-component/dist/aframe-proxy-event-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-event-set-component@4.0.0/dist/aframe-event-set-component.min.js"></script>
-    <script src="game-manager.js"></script>
-    <link rel="stylesheet" type="text/css" href="stylesheet.css"></link>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v5.0.0/dist/aframe-extras.min.js"></script> 
+    <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script> 
+     <script src="game-manager.js"></script>
+     <!-- <script src="https://wizgrav.github.io/aframe-effects/dist/aframe-effects.min.js"></script> -->
+    <!-- <script src="timer.js"></script> -->
 </head>
 
 <body>
     <!-- <a-scene background="color: #FAFAFA" environment="preset: forest" > -->
-    <div id="splash">
-        <div class="loading"></div>
-        <div class="start-button">Start</div>
-    </div>
-        <a-scene >
+    <!-- fog="color: rgba(230, 220, 180, 0.8); far: 100; type: linear;" -->	
+        <a-scene effects="bloom, fxaa" bloom="radius: 0.66" fxaa> 
+
         <a-assets>
             <a-asset-item id="raccoon" src="raccoon.obj"></a-asset-item>
             <a-asset-item id="bush" src="bush/bush.obj">
@@ -30,36 +27,41 @@
             <img id="tree1-mtl" src="tree/bubing/BubingaTree_BaseColor.png">
             <img id="skyTexture" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
             <img id="groundTexture" src="grass/grass.jpg">
-            
-            <a-mixin id="toggleVisible" animation="property: visible; from: false; to: true; dur: 1" visible="false"></a-mixin>
-            <a-mixin id="moveUpDown" animation="property: position; to: 0 2 0; loop: true; dur: 1000; dir:alternate"></a-mixin>
-            <a-mixin id="scaleUpMixin" animation__scale="property: scale; dur: 500; easing: easeInOutQuad; to: 1.5 1.5 1.5;"></a-mixin>
-            <a-mixin id="scaleDownMixin" animation__scale2="property: scale; dur: 500; easing: easeInOutQuad; to: 1 1 1;"></a-mixin>
-            <a-mixin id="fadeInText" animation__opacity="property: text.opacity; dur: 500; to: 1"></a-mixin>
-            <a-mixin id="fadeOutText" animation__opacity2="property: text.opacity; dur: 500; to: 0"></a-mixin>
-            
         </a-assets>
 
 
         <!-- Scene Elements -->
+        <!-- <a-entity template="src: bush.template" position="0 0 0"></a-entity> --> <!-- this is used to take the bush.template file and use it as a template -->
 
         <!-- these two lines call .js to create entities using the .template file and the tree+material -->
-        <a-entity id="trees" game-manager="numberTrees: 40"></a-entity>
-        <a-entity id="bushes" game-manager="numberBush: 15"></a-entity>
-        <!-- <a-entity id="text" game-manager="numberText: 15"></a-entity> -->
-
+        <a-entity game-manager="numberFlames: 15"></a-entity>
+        <a-entity game-manager="numberTrees: 40"></a-entity>
+        <a-entity game-manager="numberBush: 15"></a-entity>
+        <a-entity game-manager="numberText: 15"></a-entity>
+     
             
-
+      <!--   <a-entity  id="text" visibility="false" text="value: Gather Berries;" color=" red"  scale=" 30 30 30" position="1.4 1.7 -15.39" rotation="-0.04 82.750 0" material="side:double">
+             <a-animation attribute="visibility"
+                        dur="2000"
+                        fill="forwards"
+                        to="true"
+                        direction="alternate"
+                        begin="hover"></a-animation></a-entity> -->
 
 
       
  
         <!-- lighting -->
 
-        <a-light light="type:  hemisphere;  color:  #e6ffe2;  groundColor:  #204011;  decay:  0.74;  intensity:  0.75;  penumbra:  0.51;  castShadow:  true;  shadowBias:  12.16">
+        <a-light light="type:  hemisphere;  color:  #e6ffe2;  groundColor:  #204011;  decay:  0.74;  intensity:  0.75;  penumbra:  0.51;"> 
         </a-light>  
         <a-light type="ambient" color="#445451"></a-light>
         <a-light type="point" intensity=".2" position="0 6 0"></a-light>
+
+        <!-- SKY AND AMBIENT-LIKE LIGHT -->
+		<a-entity position="100.0 100.0 -100.0" geometry="primitive: sphere; radius: 10.0;" material="shader: flat; color: #fff;"
+    	id="moon"></a-entity>
+		<a-sky radius="5000" material="color: #000;"></a-sky>
 
         <!-- VR gamepad controls -->
         <!-- <a-entity laser-controls="hand: left"></a-entity> -->
@@ -80,14 +82,14 @@
         <a-plane src="#groundTexture" rotation="-90 0 0" width="300" height="300" repeat="10 10"></a-plane>
 
         <!-- Camera Elements -->
-        <a-entity id="rig" position="8.672 2.079 .207" rotation="0 -139.149 0" movement-controls="fly:true">
-            <a-entity id="camera" camera look-controls="pointerLockEnabled: true" wasd-controls="acceleration:300" raycaster="objects: .clickable; interval: 1;" >
+        <a-entity id="rig" position="8.672 2.079 .207" rotation="0 64.172 0" movement-controls="fly:true">
+            <a-entity id="camera" camera look-controls="pointerLockEnabled: true" wasd-controls="acceleration:300" >
                 <a-entity laser-controls="hand: right"></a-entity>
-                    <a-entity id="raccoon" obj-model="obj:#raccoon;" scale="0.03 0.03 0.03 " position="-0.03 -1.22 -0.5" rotation="-90 68 110" material="src:raccoon/10038_Racoon_v1_Diffuse.jpg; roughness:1; meatlness:0;" rotation="-89.41 39.425 -156.3"></a-entity>
+                    <a-entity obj-model="obj:#raccoon;" scale="0.03 0.03 0.03 " position="-0.03 -1.22 -0.5" rotation="-90 68 110" material="src:raccoon/10038_Racoon_v1_Diffuse.jpg; roughness:1; meatlness:0;" rotation="-89.41 39.425 -156.3"></a-entity>
                     <a-cursor id="cursor" cursor="rayOrigin: mouse"></a-cursor>
 
                      <!-- this berry needs to be generated when a bush is clicked-then is shown in inventory -->
-                    <a-entity id="berry" obj-model="obj:#berry; mtl:#berry-mtl"  position="-1.514 -.77 -1.609" scale=".2 .2 .2" animation__opacity="property: opacity; dur: 500; to: 1; startEvents: fadeIn;" animation__opacity2="property: opacity; dur: 500; to: 0; startEvents: fadeOut"
+                    <a-entity id="berry" obj-model="obj:#berry; mtl:#berry-mtl"  position="-1.514 -.77 -1.609" scale=".2 .2 .2" 
                             animation="property:rotation;
                                         from: 0 0 0;
                                         to: 0 -360 0;
@@ -95,9 +97,8 @@
                                         easing:linear;
                                         dur:3000;
                                         ">
-                            <a-entity geometry="primitive:  ring;  radiusInner:  1;  radiusOuter:  1.3" material="side:  double;  offset:  [object Object];  repeat:  [object Object];  ambientOcclusionTextureOffset:  [object Object];  ambientOcclusionTextureRepeat:  [object Object];  color:  #d0ff18;  displacementTextureOffset:  [object Object];  displacementTextureRepeat:  [object Object];  metalnessTextureOffset:  [object Object];  metalnessTextureRepeat:  [object Object];  normalScale:  [object Object];  normalTextureOffset:  [object Object];  normalTextureRepeat:  [object Object];  roughnessTextureOffset:  [object Object];  roughnessTextureRepeat:  [object Object]" position="-1.514 -.77 -1.609" scale=".3 .3 .3"></a-entity>
                     </a-entity>
-
+                    <a-entity geometry="primitive:  ring;  radiusInner:  1;  radiusOuter:  1.3" material="side:  double;  offset:  [object Object];  repeat:  [object Object];  ambientOcclusionTextureOffset:  [object Object];  ambientOcclusionTextureRepeat:  [object Object];  color:  #d0ff18;  displacementTextureOffset:  [object Object];  displacementTextureRepeat:  [object Object];  metalnessTextureOffset:  [object Object];  metalnessTextureRepeat:  [object Object];  normalScale:  [object Object];  normalTextureOffset:  [object Object];  normalTextureRepeat:  [object Object];  roughnessTextureOffset:  [object Object];  roughnessTextureRepeat:  [object Object]" position="-1.514 -.77 -1.609" scale=".3 .3 .3"></a-entity>
 
             </a-entity>
         </a-entity>
