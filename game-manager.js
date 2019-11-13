@@ -46,8 +46,7 @@ var tempFlamePos;
 AFRAME.registerComponent('game-manager', {
     schema: {
         numberTrees: { type: 'int' },
-        numberBush: { type: 'int'},
-        // numberText: { type: 'int'},        
+        numberBush: { type: 'int'},      
         numberFlames: { type: 'int'},
     },
 
@@ -63,8 +62,7 @@ AFRAME.registerComponent('game-manager', {
 		var numLight = numFlame;
         var newFlame = [];
         var newLight = [];
-        // var numText = this.data['numberText'];
-        // var newText = [];
+
 
 
 		
