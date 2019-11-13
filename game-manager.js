@@ -2,7 +2,44 @@
 if (typeof AFRAME === 'undefined') {
   throw new Error('Component attempted to register before AFRAME was available.');
 }
+  // document.addEventListener('DOMContentLoaded', function() {
+  //     const scene = document.querySelector('a-scene');
+  //     const splash = document.querySelector('#splash');
+  //     const loading = document.querySelector('#splash .loading');
+  //     const startButton = document.querySelector('#splash .start-button');
 
+  //     const emitEvent = (eventName, listeners) => {
+  //         listeners.forEach((listener) => {
+  //             const el = document.querySelector(listener);
+  //             el.emit(eventName);
+  //         })
+  //     };
+
+  //     const emitMediaEvent = (eventType, listeners) => {
+  //         listeners.forEach((listener) => {
+  //             const el = document.querySelector(listener);
+  //             el.components.sound[eventType]();
+  //         })
+  //     };
+
+
+  //     scene.addEventListener('loaded', function(e) {
+  //         setTimeout(() => {
+  //             loading.style.display = 'none';
+  //             splash.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+  //             startButton.style.opacity = .8;
+  //         }, 50);
+  //     });
+
+  //     startButton.addEventListener('click', function(e) {
+  //         splash.style.display = 'none';
+  //         emitEvent('scene-started', ['#groundTexture', '#text', '#bushes', '#raccoon', '#trees']);
+  //     });
+  // });
+
+  // document.querySelector('a-assets').addEventListener('loaded', function() {
+  //     console.log("OK LOADED");
+  // });
 var tempBushPos;
 var tempFlamePos;
 
@@ -10,7 +47,7 @@ AFRAME.registerComponent('game-manager', {
     schema: {
         numberTrees: { type: 'int' },
         numberBush: { type: 'int'},
-        numberText: { type: 'int'},        
+        // numberText: { type: 'int'},        
         numberFlames: { type: 'int'},
     },
 
@@ -26,8 +63,8 @@ AFRAME.registerComponent('game-manager', {
 		var numLight = numFlame;
         var newFlame = [];
         var newLight = [];
-        var numText = this.data['numberText'];
-        var newText = [];
+        // var numText = this.data['numberText'];
+        // var newText = [];
 
 
 		
@@ -44,18 +81,14 @@ AFRAME.registerComponent('game-manager', {
         });
         for (var i = 0; i < numBush; i++) {
             newBush.push(GameManagerUtils.createBush());
-            newText.push(GameManagerUtils.createText());
+            
         }
         sceneEl.addEventListener('loaded', function () {
             newBush.forEach(function (bush) {
                 sceneEl.appendChild(bush);
             });
         });
-        sceneEl.addEventListener('loaded', function () {
-            newText.forEach(function (text) {
-                sceneEl.appendChild(text);
-            });
-        });
+
 
         for (var i = 0; i < numFlame; i++) {
 
@@ -113,20 +146,6 @@ var GameManagerUtils = {
         return newBush;    
 	},
     
-    //text
-    createText: function () {
-        console.log('createText');
-        var newText = document.createElement('a-entity');
-        newText.setAttribute('rotation', '0 200 0');
-        //newText.setAttribute('id', 'opacity');
-        //newText.setAttribute('animation', 'property: components.text.material.uniforms.opacity.value; to: 0; dir: alternate; loop: true');
-        newText.setAttribute('text', 'value: Grab Berries; width:10; align: center;');
-        //newText.setAttribute('material', 'color:white;');
-        //newText.setAttribute('value', 'Grab berries');
-        newText.setAttribute('position', tempBushPos);
-        newText.setAttribute('position', {y: 2});
-        return newText;
-    },
 
 
 
@@ -137,6 +156,8 @@ var GameManagerUtils = {
         console.log('createFlame');
         var newFlame = document.createElement('a-entity');
         newFlame.setAttribute('fire', 'particles: 800');
+        // newFlame.setAttribute('visible', 'false')
+        newFlame.setAttribute('id','flame')
         var position = GameManagerUtils.chooseRandomPosition();
         newFlame.setAttribute('position', position);
         tempFlamePos = position;
@@ -157,6 +178,10 @@ var GameManagerUtils = {
     
     
 };
+
+document.querySelector('p').addEventListener('click', function (evt) {
+  console.log('This 2D element was clicked!');
+});
 
 // Component to change to a sequential color on click.
 AFRAME.registerComponent('cursor-listener', {

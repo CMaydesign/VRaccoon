@@ -3,10 +3,22 @@
                 animation__mouseenter="property: components.material.material.color; type: color; to: yellow; startEvents: mouseenter; dur: 500;" 
                 animation__mouseleave="property: components.material.material.color; type: color; to: green; startEvents: mouseleave; dur: 500;"
                 proxy-event__enter="event: mouseenter; to: a-text; as: fadeIn"
-                proxy-event__leave="event: mouseleave; to: a-text; as: fadeOut">
+                proxy-event__leave="event: mouseleave; to: a-text; as: fadeOut"
+                event-set__click="_target: #berry; _delay: 300; visible: true"
+            	proxy-event="event: click; to: #berry; as: fade">
                 </a-entity>
-            <a-entity id="berry" obj-model="obj:#berry; mtl:#berry-mtl"  position=".2 1 0" scale=".2 .2 .2" rotation=""   amplitude-variance="0.25"></a-entity>
-            <a-entity id="berry" obj-model="obj:#berry; mtl:#berry-mtl"  position=".4 .6 0" scale=".2 .2 .2" rotation=""   amplitude-variance="0.25"></a-entity>
-            <a-entity id="berry" obj-model="obj:#berry; mtl:#berry-mtl"  position="-0.171 .830 .243" scale=".2 .2 .2" rotation=""   amplitude-variance="0.25"></a-entity>
+            <a-entity  obj-model="obj:#berry; mtl:#berry-mtl"  position=".2 1 0" scale=".2 .2 .2" rotation=""   amplitude-variance="0.25"></a-entity>
+            <a-entity  obj-model="obj:#berry; mtl:#berry-mtl"  position=".4 .6 0" scale=".2 .2 .2" rotation=""   amplitude-variance="0.25"></a-entity>
+            <a-entity  obj-model="obj:#berry; mtl:#berry-mtl"  position="-0.171 .830 .243" scale=".2 .2 .2" rotation=""   amplitude-variance="0.25"></a-entity>
             <a-text  id="TextMercury" class="textbox" text="value: Grab Berries; align: center; color:#FFF" opacity="0" rotation="0 200 0" scale="2 2 2" position=".4 2 0" animation__opacity="property: opacity; dur: 500; to: 1; startEvents: fadeIn;" animation__opacity2="property: opacity; dur: 500; to: 0; startEvents: fadeOut"> </a-text>
+            <a-entity id="berry" visible="false" obj-model="obj:#berry; mtl:#berry-mtl"  position="-1.514 -.77 -1.609" scale=".2 .2 .2" 
+                            animation="property:rotation;
+                                        from: 0 0 0;
+                                        to: 0 -360 0;
+                                        loop: true;
+                                        easing:linear;
+                                        dur:3000;
+                                        ">
+                                        <a-entity geometry="primitive:  ring;  radiusInner:  1;  radiusOuter:  1.3" material="side:  double;  offset:  [object Object];  repeat:  [object Object];  ambientOcclusionTextureOffset:  [object Object];  ambientOcclusionTextureRepeat:  [object Object];  color:  #d0ff18;  displacementTextureOffset:  [object Object];  displacementTextureRepeat:  [object Object];  metalnessTextureOffset:  [object Object];  metalnessTextureRepeat:  [object Object];  normalScale:  [object Object];  normalTextureOffset:  [object Object];  normalTextureRepeat:  [object Object];  roughnessTextureOffset:  [object Object];  roughnessTextureRepeat:  [object Object]" position="-1.514 -.77 -1.609" scale=".3 .3 .3"></a-entity>
+                    </a-entity>
 </a-entity>
