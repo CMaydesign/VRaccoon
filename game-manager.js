@@ -63,12 +63,6 @@ AFRAME.registerComponent('game-manager', {
         var newFlame = [];
         var newLight = [];
 
-
-
-		
-        
-
-
         for (var i = 0; i < numTrees; i++) {
             newTrees.push(GameManagerUtils.createTree());
         }
@@ -87,15 +81,9 @@ AFRAME.registerComponent('game-manager', {
             });
         });
 
-
         for (var i = 0; i < numFlame; i++) {
-
-        	
             newFlame.push(GameManagerUtils.createFlame());
             newLight.push(GameManagerUtils.createLight());
-           
-            
-
         }
         sceneEl.addEventListener('loaded', function () {
             newFlame.forEach(function (flame) {
@@ -116,7 +104,7 @@ var GameManagerUtils = {
         return Math.floor(Math.random() * max + min);
     },
     chooseRandomPosition: function () {
-       var xPos = GameManagerUtils.generateRandomNumber(100,  -100);
+		var xPos = GameManagerUtils.generateRandomNumber(100,  -100);
         var yPos = 0;
         var zPos = GameManagerUtils.generateRandomNumber(100, -100);
         return { 'x': xPos, 'y': yPos, 'z': zPos};
@@ -144,43 +132,36 @@ var GameManagerUtils = {
         return newBush;    
 	},
     
-
-
-
-    
      createFlame: function () {
-
-     	
         console.log('createFlame');
         var newFlame = document.createElement('a-entity');
         newFlame.setAttribute('fire', 'particles: 800');
-        // newFlame.setAttribute('visible', 'false')
-        newFlame.setAttribute('id','flame')
+        // newFlame.setAttribute('visible', 'false');
+        // newFlame.setAttribute('id','flame');
         var position = GameManagerUtils.chooseRandomPosition();
         newFlame.setAttribute('position', position);
         tempFlamePos = position;
 	    return newFlame;
-	    
-	    
 	},
     
      createLight: function () {
         console.log('createLight');
         var newLight = document.createElement('a-light');
-        newLight.setAttribute('light', 'type: point; color: #FFA200; intensity: 3; distance: 20');
+        newLight.setAttribute('light', 'type: point; color: #FFA200; intensity: 0; distance: 20');
         newLight.setAttribute('position', tempFlamePos);
         newLight.setAttribute('position', {y: 0.5});
+        newLight.setAttribute('animation__fade', 'property: intensity; from: 0; to: 2; dur:25000; delay:2500; easing:easeInSine');
         return newLight;
     }
-
-    
-    
+   
 };
 
-document.querySelector('p').addEventListener('click', function (evt) {
+// This code collides with flames
+/* document.querySelector('p').addEventListener('click', function (evt) {
   console.log('This 2D element was clicked!');
 });
-
+ */
+ 
 // Component to change to a sequential color on click.
 AFRAME.registerComponent('cursor-listener', {
   init: function () {
@@ -268,7 +249,7 @@ const FRAGMENT = `
         return fract(f);
     }
     void main() {
-        float alpha = (yMax - vUv.y) * 0.8;
+		float alpha = min(max(0.0, time-5.0) * 0.08, 1.0);
         float red = 1.0;
         float green = 0.3 + (0.7 * mix(((yMax - vUv.y) * 0.5) + 0.5, 0.5 - abs(max(vUv.x, vUv.y)), 0.5));
         float blueMin = abs(max(max(vUv.x, vUv.z), (vUv.y / yMax)));
@@ -286,7 +267,7 @@ const createSparks = (count) => {
         for (let i = 0; i < count; i += 1) {
             const direction = [
                 Math.random() - 0.5,
-                (Math.random() + 0.3),
+                Math.random() + 0.3,
                 Math.random() - 0.5];
             const offset = Math.random() * Math.PI;
 
